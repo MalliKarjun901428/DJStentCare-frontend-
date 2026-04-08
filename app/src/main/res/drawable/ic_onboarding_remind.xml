@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="150dp"
+    android:height="150dp"
+    android:viewportWidth="150"
+    android:viewportHeight="150">
+    
+    <!-- Calendar base -->
+    <path
+        android:pathData="M30,40 L120,40 C123,40 125,42 125,45 L125,115 C125,118 123,120 120,120 L30,120 C27,120 25,118 25,115 L25,45 C25,42 27,40 30,40 Z"
+        android:fillColor="@color/surface"
+        android:strokeWidth="2"
+        android:strokeColor="@color/primary"/>
+    
+    <!-- Calendar header -->
+    <path
+        android:pathData="M25,55 L125,55"
+        android:strokeWidth="2"
+        android:strokeColor="@color/primary"/>
+    
+    <!-- Calendar rings -->
+    <path
+        android:pathData="M45,35 L45,45"
+        android:strokeWidth="4"
+        android:strokeColor="@color/primary"
+        android:strokeLineCap="round"/>
+    <path
+        android:pathData="M75,35 L75,45"
+        android:strokeWidth="4"
+        android:strokeColor="@color/primary"
+        android:strokeLineCap="round"/>
+    <path
+        android:pathData="M105,35 L105,45"
+        android:strokeWidth="4"
+        android:strokeColor="@color/primary"
+        android:strokeLineCap="round"/>
+    
+    <!-- Calendar date with bell -->
+    <path
+        android:pathData="M55,70 L95,70 L95,100 L55,100 Z"
+        android:fillColor="@color/warning_light"
+        android:strokeWidth="2"
+        android:strokeColor="@color/warning"/>
+    
+    <!-- Bell icon -->
+    <path
+        android:pathData="M75,75 L75,82 M70,82 C70,79 72,77 75,77 C78,77 80,79 80,82 L80,88 C80,90 78,92 75,92 C72,92 70,90 70,88 Z"
+        android:strokeWidth="2"
+        android:strokeColor="@color/warning"
+        android:fillColor="@android:color/transparent"
+        android:strokeLineCap="round"/>
+    
+    <!-- Date text -->
+    <path
+        android:pathData="M65,95 L85,95"
+        android:strokeWidth="3"
+        android:strokeColor="@color/warning"/>
+    
+</vector>

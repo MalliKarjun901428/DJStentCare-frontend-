@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".DJStentCareApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.DJStentCare"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        
+        <!-- Splash Screen -->
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.DJStentCare.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Onboarding -->
+        <activity android:name=".ui.onboarding.OnboardingActivity" />
+        
+        <!-- Role Selection -->
+        <activity android:name=".ui.auth.RoleSelectionActivity" />
+        
+        <!-- Auth -->
+        <activity android:name=".ui.auth.LoginActivity" />
+        <activity android:name=".ui.auth.SignupActivity" />
+        <activity android:name=".ui.auth.OtpVerificationActivity" />
+        <activity android:name=".ui.auth.ForgotPasswordActivity" />
+        
+        <!-- Doctor -->
+        <activity android:name=".ui.doctor.DoctorDashboardActivity" />
+        <activity android:name=".ui.doctor.MyPatientsActivity" />
+        <activity android:name=".ui.doctor.AddPatientActivity" />
+        <activity android:name=".ui.doctor.PatientDetailsActivity" />
+        <activity android:name=".ui.doctor.AddStentActivity" />
+        <activity android:name=".ui.doctor.StentDetailsActivity" />
+        <activity android:name=".ui.doctor.CalendarActivity" />
+        <activity android:name=".ui.doctor.DoctorProfileActivity" />
+        <activity android:name=".ui.doctor.DoctorSettingsActivity" />
+        
+        <!-- Patient -->
+        <activity android:name=".ui.patient.PatientDashboardActivity" />
+        <activity android:name=".ui.patient.StentProgressActivity" />
+        <activity android:name=".ui.patient.SymptomTrackerActivity" />
+        <activity android:name=".ui.patient.MedicationTrackerActivity" />
+        <activity android:name=".ui.patient.HydrationTrackerActivity" />
+        <activity android:name=".ui.patient.VideoConsultationActivity" />
+        <activity android:name=".ui.patient.ChatActivity" />
+        <activity android:name=".ui.patient.EmergencyActivity" />
+        <activity android:name=".ui.patient.EducationLibraryActivity" />
+        <activity android:name=".ui.patient.PatientProfileActivity" />
+        
+        <!-- Admin -->
+        <activity android:name=".ui.admin.AdminDashboardActivity" />
+        <activity android:name=".ui.admin.DoctorApprovalsActivity" />
+        <activity android:name=".ui.admin.UserManagementActivity" />
+        <activity android:name=".ui.admin.HospitalManagementActivity" />
+        <activity android:name=".ui.admin.AdminSettingsActivity" />
+        
+        <!-- Common -->
+        <activity android:name=".ui.common.NotificationsActivity" />
+        <activity android:name=".ui.common.AboutActivity" />
+        <activity android:name=".ui.common.HelpSupportActivity" />
+
+    </application>
+
+</manifest>

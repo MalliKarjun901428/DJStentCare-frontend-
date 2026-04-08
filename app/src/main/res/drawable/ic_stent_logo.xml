@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    
+    <!-- Background Circle -->
+    <path
+        android:pathData="M50,50m-45,0a45,45 0,1 1,90 0a45,45 0,1 1,-90 0"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.2"/>
+    
+    <!-- Stent Shape (J-like curve) -->
+    <path
+        android:pathData="M35,25 C35,25 35,60 35,65 C35,75 45,80 55,75 C65,70 70,60 70,50"
+        android:strokeWidth="6"
+        android:strokeColor="#FFFFFF"
+        android:fillColor="@android:color/transparent"
+        android:strokeLineCap="round"/>
+    
+    <!-- Top curl -->
+    <path
+        android:pathData="M35,25 C35,20 40,18 45,20"
+        android:strokeWidth="6"
+        android:strokeColor="#FFFFFF"
+        android:fillColor="@android:color/transparent"
+        android:strokeLineCap="round"/>
+    
+    <!-- Bottom curl -->
+    <path
+        android:pathData="M70,50 C72,45 75,48 73,55"
+        android:strokeWidth="6"
+        android:strokeColor="#FFFFFF"
+        android:fillColor="@android:color/transparent"
+        android:strokeLineCap="round"/>
+    
+</vector>

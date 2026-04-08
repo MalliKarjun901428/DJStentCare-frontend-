@@ -1,0 +1,148 @@
+<resources>
+    <string name="app_name">DJ Stent Care</string>
+    
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Track DJ Stents Digitally</string>
+    <string name="onboarding_desc_1">Monitor your DJ stent placement and removal dates with ease</string>
+    <string name="onboarding_title_2">Secure Doctor-Patient Communication</string>
+    <string name="onboarding_desc_2">Stay connected with your healthcare provider through secure messaging</string>
+    <string name="onboarding_title_3">Never Miss Stent Removal</string>
+    <string name="onboarding_desc_3">Get timely reminders for your DJ stent removal appointments</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="get_started">Get Started</string>
+    <string name="stent_progress">Stent Progress</string>
+    <!-- Role Selection -->
+    <string name="welcome_to_stentcare">Welcome to StentCare</string>
+    <string name="select_role">Select your role to continue</string>
+    <string name="doctor">Doctor</string>
+    <string name="doctor_desc">Manage patients and DJ stents</string>
+    <string name="patient">Patient</string>
+    <string name="patient_desc">Track your DJ stent status</string>
+    <string name="admin">Admin</string>
+    <string name="admin_desc">System administration</string>
+    <string name="terms_notice">By continuing, you agree to our Terms of Service and Privacy Policy</string>
+    
+    <!-- Auth -->
+    <string name="welcome_back">Welcome Back</string>
+    <string name="sign_in_account">Sign in to your account</string>
+    <string name="email">Email</string>
+    <string name="enter_email">Enter your email Address</string>
+    <string name="password">Password</string>
+    <string name="enter_password">Enter your password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">Login</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_account">Create Account</string>
+    <string name="full_name">Full Name</string>
+    <string name="enter_full_name">Enter your full name</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="enter_mobile">Enter your mobile number</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="confirm_your_password">Confirm your password</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="otp_sent_to">Enter the OTP sent to</string>
+    <string name="verify">Verify</string>
+    <string name="resend_otp">Resend OTP</string>
+    
+    <!-- Dashboard -->
+    <string name="welcome_back_user">Welcome back,</string>
+    <string name="total_patients">Total Patients</string>
+    <string name="active_stents">Active Stents</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="overdue">Overdue</string>
+    <string name="quick_actions">Quick Actions</string>
+    <string name="add_patient">Add Patient</string>
+    <string name="add_stent">Add Stent</string>
+    <string name="upcoming_removals">Upcoming Removals</string>
+    <string name="view_all">View All</string>
+    <string name="days_left">days left</string>
+    
+    <!-- Navigation -->
+    <string name="home">Home</string>
+    <string name="patients">Patients</string>
+    <string name="schedule">Schedule</string>
+    <string name="profile">Profile</string>
+    <string name="progress">Progress</string>
+    <string name="settings">Settings</string>
+    
+    <!-- Patient Dashboard -->
+    <string name="dj_stent_active">DJ Stent Active</string>
+    <string name="time_until_removal">Time Until Removal</string>
+    <string name="inserted">Inserted</string>
+    <string name="removal_due">Removal Due</string>
+    <string name="view_progress">View Progress</string>
+    <string name="upcoming_removal">Upcoming Removal</string>
+    <string name="symptoms">Symptoms</string>
+    <string name="hydration">Hydration</string>
+    <string name="medications">Medications</string>
+    <string name="video_call">Video Call</string>
+    <string name="learn">Learn</string>
+    <string name="chat_doctor">Chat Doctor</string>
+    <string name="reports">Reports</string>
+    <string name="emergency">Emergency</string>
+    
+    <!-- Trackers -->
+    <string name="symptom_tracker">Symptom Tracker</string>
+    <string name="todays_log">Today\'s Log</string>
+    <string name="pain_level">Pain Level</string>
+    <string name="no_pain">No Pain</string>
+    <string name="severe">Severe</string>
+    <string name="water_intake">Water Intake (Glasses)</string>
+    <string name="blood_in_urine">Blood in urine</string>
+    <string name="frequent_urination">Frequent urination</string>
+    <string name="additional_notes">Additional Notes</string>
+    <string name="save_todays_log">Save Today\'s Log</string>
+    <string name="recent_logs">Recent Logs</string>
+    
+    <string name="hydration_tracker">Hydration Tracker</string>
+    <string name="stay_hydrated">Stay Hydrated</string>
+    <string name="hydration_message">Drinking enough water is crucial for DJ stent patients to prevent complications</string>
+    <string name="log_water_intake">Log Water Intake</string>
+    <string name="glasses">glasses</string>
+    <string name="this_week">This Week</string>
+    <string name="daily_goal">Daily Goal</string>
+    <string name="day_streak">Day Streak</string>
+    <string name="avg_week">Avg. Week</string>
+    <string name="hydration_tips">Hydration Tips</string>
+    
+    <string name="medication_tracker">Medication Tracker</string>
+    <string name="add_medication">Add Medication</string>
+    <string name="todays_medications">Today\'s Medications</string>
+    <string name="take">Take</string>
+    <string name="set_reminder">Set Reminder</string>
+    <string name="edit">Edit</string>
+    <string name="recent_history">Recent History</string>
+    <string name="taken">Taken</string>
+    <string name="missed">Missed</string>
+    <string name="adherence_rate">Adherence Rate</string>
+    <string name="active_meds">Active Meds</string>
+    
+    <!-- Admin -->
+    <string name="admin_panel">Admin Panel</string>
+    <string name="stentcare_system">StentCare System</string>
+    <string name="total_doctors">Total Doctors</string>
+    <string name="hospitals">Hospitals</string>
+    <string name="doctor_approvals">Doctor Approvals</string>
+    <string name="pending">pending</string>
+    <string name="analytics">Analytics</string>
+    <string name="recent_activity">Recent Activity</string>
+    <string name="users">Users</string>
+    
+    <!-- Common -->
+    <string name="loading">Loading...</string>
+    <string name="error">Error</string>
+    <string name="success">Success</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="confirm">Confirm</string>
+    <string name="search">Search</string>
+    <string name="no_data">No data available</string>
+    <string name="retry">Retry</string>
+    <string name="logout">Logout</string>
+    <string name="about">About</string>
+    <string name="help_support">Help &amp; Support</string>
+</resources>

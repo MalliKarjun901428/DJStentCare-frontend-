@@ -1,0 +1,13 @@
+e: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/doctor/CalendarActivity.kt:92:46 Unresolved reference: date
+e: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/doctor/CalendarActivity.kt:134:34 Unresolved reference: title
+e: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/doctor/CalendarActivity.kt:136:33 Unresolved reference: type
+e: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/doctor/CalendarActivity.kt:136:57 Unresolved reference: it
+e: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/doctor/CalendarActivity.kt:138:37 Unresolved reference: type
+e: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/doctor/DoctorProfileActivity.kt:78:44 Unresolved reference: doctorProfile
+e: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/doctor/StentDetailsActivity.kt:71:56 Unresolved reference: stent
+e: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/doctor/StentDetailsActivity.kt:78:73 Unresolved reference: it
+e: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/patient/EducationLibraryActivity.kt:14:39 Unresolved reference: EducationArticle
+e: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/patient/EducationLibraryActivity.kt:46:53 Unresolved reference: getEducation
+e: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/patient/EducationLibraryActivity.kt:63:32 Unresolved reference: EducationArticle
+e: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/patient/EducationLibraryActivity.kt:84:27 Unresolved reference: EducationArticle
+   > Compilation error. See log for more details

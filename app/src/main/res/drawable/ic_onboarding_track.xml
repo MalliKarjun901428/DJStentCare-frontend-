@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="150dp"
+    android:height="150dp"
+    android:viewportWidth="150"
+    android:viewportHeight="150">
+    
+    <!-- Phone outline -->
+    <path
+        android:pathData="M45,20 L105,20 C110,20 115,25 115,30 L115,120 C115,125 110,130 105,130 L45,130 C40,130 35,125 35,120 L35,30 C35,25 40,20 45,20 Z"
+        android:strokeWidth="3"
+        android:strokeColor="@color/primary"
+        android:fillColor="@color/primary_very_light"/>
+    
+    <!-- Screen -->
+    <path
+        android:pathData="M42,35 L108,35 L108,110 L42,110 Z"
+        android:fillColor="@color/surface"/>
+    
+    <!-- Stent icon on screen -->
+    <path
+        android:pathData="M65,50 C65,50 65,75 65,78 C65,85 72,88 80,85 C88,82 92,75 92,68"
+        android:strokeWidth="4"
+        android:strokeColor="@color/primary"
+        android:fillColor="@android:color/transparent"
+        android:strokeLineCap="round"/>
+    
+    <!-- Check mark -->
+    <path
+        android:pathData="M85,90 L90,95 L100,80"
+        android:strokeWidth="3"
+        android:strokeColor="@color/success"
+        android:fillColor="@android:color/transparent"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+    
+</vector>

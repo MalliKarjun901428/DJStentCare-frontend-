@@ -1,0 +1,43 @@
+﻿Starting a Gradle Daemon, 1 incompatible and 1 stopped Daemons could not be reused, use --status for details
+.\gradlew.bat : Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android 
+Studio and the command-line tools that were released at different times.
+At line:1 char:1
++ .\gradlew.bat compileDebugKotlin 2>&1 | Out-File -Encoding utf8 build ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo              : NotSpe    cified: (Warning    : SDK pr...iffer    ent times.:Strin    g) [], RemoteExc    eption
+    + FullyQualified    ErrorId : Native    CommandError
+ 
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:packageDebugResources
+> Task :app:mergeDebugResources
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:parseDebugLocalResources
+> Task :app:processDebugMainManifest
+> Task :app:dataBindingGenBaseClassesDebug
+> Task :app:processDebugManifest
+> Task :app:processDebugManifestForPackage
+> Task :app:processDebugResources
+> Task :app:compileDebugKotlin
+w: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/doctor/DoctorDashboardActivity.kt:110:87 Parameter 'removal' is never used, could be renamed to _
+w: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/doctor/DoctorProfileActivity.kt:79:54 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/doctor/MyPatientsActivity.kt:130:43 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/doctor/PatientDetailsActivity.kt:101:46 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/app/src/main/java/com/example/djstentcare/ui/patient/PatientProfileActivity.kt:73:59 Elvis operator (?:) always returns the left operand of non-nullable type String
+
+[Incubating] Problems report is available at: file:///C:/Users/pedda/.gemini/antigravity/scratch/DJStentCare/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.0-milestone-1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 1m 15s
+15 actionable tasks: 10 executed, 5 up-to-date

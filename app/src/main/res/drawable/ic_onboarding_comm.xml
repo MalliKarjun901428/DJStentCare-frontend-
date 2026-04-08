@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="150dp"
+    android:height="150dp"
+    android:viewportWidth="150"
+    android:viewportHeight="150">
+    
+    <!-- Doctor icon -->
+    <path
+        android:pathData="M50,50 A15,15 0 1,1 50,49.9"
+        android:fillColor="@color/primary_light"/>
+    <path
+        android:pathData="M35,85 C35,70 45,63 50,63 C55,63 65,70 65,85"
+        android:fillColor="@color/primary"/>
+    
+    <!-- Patient icon -->
+    <path
+        android:pathData="M100,50 A15,15 0 1,1 100,49.9"
+        android:fillColor="@color/success_light"/>
+    <path
+        android:pathData="M85,85 C85,70 95,63 100,63 C105,63 115,70 115,85"
+        android:fillColor="@color/success"/>
+    
+    <!-- Connection lines -->
+    <path
+        android:pathData="M65,55 L85,55"
+        android:strokeWidth="2"
+        android:strokeColor="@color/primary"
+        android:fillColor="@android:color/transparent"/>
+    
+    <!-- Chat bubbles -->
+    <path
+        android:pathData="M55,100 L75,100 C78,100 80,102 80,105 L80,115 C80,118 78,120 75,120 L60,120 L55,127 L55,120 L55,105 C55,102 57,100 60,100 Z"
+        android:fillColor="@color/primary_very_light"
+        android:strokeWidth="2"
+        android:strokeColor="@color/primary"/>
+    
+    <path
+        android:pathData="M75,108 L95,108 C98,108 100,110 100,113 L100,123 C100,126 98,128 95,128 L80,128 L75,135 L75,128 L75,113 C75,110 77,108 80,108 Z"
+        android:fillColor="@color/success_light"
+        android:strokeWidth="2"
+        android:strokeColor="@color/success"/>
+    
+</vector>
