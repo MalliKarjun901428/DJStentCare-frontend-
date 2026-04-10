@@ -26,8 +26,12 @@ import com.simats.stentcare.ui.common.HelpSupportActivity
 import com.simats.stentcare.ui.common.NotificationsActivity
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textfield.TextInputEditText
+import com.bumptech.glide.Glide
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import java.io.ByteArrayOutputStream
+import java.util.UUID
 
 class PatientProfileActivity : AppCompatActivity() {
 
@@ -104,7 +108,10 @@ class PatientProfileActivity : AppCompatActivity() {
 
                     // Load profile image if available
                     if (!p.profileImage.isNullOrBlank()) {
-                        loadBase64Image(p.profileImage)
+                        Glide.with(this@PatientProfileActivity)
+                            .load(p.profileImage)
+                            .placeholder(R.drawable.ic_profile_placeholder)
+                            .into(ivProfileImage)
                     }
 
                     DJStentCareApp.instance.saveUserSession(
@@ -119,40 +126,37 @@ class PatientProfileActivity : AppCompatActivity() {
     }
 
     private fun loadBase64Image(base64: String) {
-        try {
-            val bytes = Base64.decode(base64, Base64.DEFAULT)
-            val bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-            ivProfileImage.setImageBitmap(bmp)
-        } catch (_: Exception) {}
+        // Obsolete
     }
 
     private fun uploadProfileImage(uri: Uri) {
         lifecycleScope.launch {
             try {
-                val bytes = contentResolver.openInputStream(uri)?.readBytes() ?: return@launch
-
-                val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-                val stream = ByteArrayOutputStream()
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream)
-                val compressed = stream.toByteArray()
-                val base64Str = Base64.encodeToString(compressed, Base64.DEFAULT)
+                Toast.makeText(this@PatientProfileActivity, "Uploading...", Toast.LENGTH_SHORT).show()
+                val fileName = UUID.randomUUID().toString() + ".jpg"
+                val storage = FirebaseStorage.getInstance()
+                val ref = storage.reference.child("profiles/$fileName")
+                
+                ref.putFile(uri).await()
+                val imageUrl = ref.downloadUrl.await().toString()
 
                 val response = ApiClient.apiService.updatePatientProfile(
                     UpdateProfileRequest(
                         fullName = tvName.text.toString(),
                         phone = tvPhone.text.toString(),
-                        profileImage = base64Str
+                        profileImage = imageUrl
                     )
                 )
                 if (response.isSuccessful && response.body()?.success == true) {
-                    val bmp = BitmapFactory.decodeByteArray(compressed, 0, compressed.size)
-                    ivProfileImage.setImageBitmap(bmp)
+                    Glide.with(this@PatientProfileActivity)
+                        .load(imageUrl)
+                        .into(ivProfileImage)
                     Toast.makeText(this@PatientProfileActivity, "Profile photo updated!", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this@PatientProfileActivity, "Failed to update photo", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@PatientProfileActivity, "Failed to update profile", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
-                Toast.makeText(this@PatientProfileActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@PatientProfileActivity, "Upload error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }

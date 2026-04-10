@@ -29,6 +29,7 @@ from api.views.notifications import NotificationsView
 from api.views.consultations import ConsultationsView
 from api.views.admin import (
     AdminDashboardView, DoctorApprovalsView, UsersView, HospitalsView,
+    UpdateProfileView as AdminUpdateProfileView,
 )
 from api.views.education import EducationView
 
@@ -80,6 +81,7 @@ urlpatterns = [
     path('admin/doctor_approvals/', DoctorApprovalsView.as_view(), name='admin-doctor-approvals'),
     path('admin/users/', UsersView.as_view(), name='admin-users'),
     path('admin/hospitals/', HospitalsView.as_view(), name='admin-hospitals'),
+    path('admin/update_profile/', AdminUpdateProfileView.as_view(), name='admin-update-profile'),
 
     # ==================== EDUCATION ====================
     path('education/', EducationView.as_view(), name='education'),

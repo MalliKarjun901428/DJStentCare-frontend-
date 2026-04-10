@@ -26,6 +26,7 @@ import { useAuth } from '../context/AuthContext';
 import { initialPatients, calcDays, calculateDueDate } from '../utils/mockData';
 import { apiFetch } from '../utils/api';
 import { Edit2, Check, ArrowRightCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const statusConfig = {
   overdue:  { label: 'Overdue',  bg: 'bg-red-100',    text: 'text-red-600',    dot: 'bg-red-500'    },
@@ -113,6 +114,7 @@ const Modal = ({ title, subtitle, icon: Icon, iconBg, iconColor, onClose, childr
 ═══════════════════════════════════════════ */
 export const DoctorDashboard = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [patients, setPatients] = useState(initialPatients);
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -133,12 +135,25 @@ export const DoctorDashboard = () => {
     const fetchDashboardData = async () => {
       try {
         setLoading(true);
-        // Attempt to fetch live dashboard data from Django backend
-        const data = await apiFetch('/doctor/dashboard/');
+        // Fetch patients list to populate the table
+        const data = await apiFetch('/doctor/patients/');
         
-        if (data) {
-          if (Array.isArray(data.patients)) setPatients(data.patients);
-          // If the backend provides separate stats, ensure they match the image
+        if (data && Array.isArray(data.patients)) {
+          // Map backend field names → frontend field names
+          const mapped = data.patients.map(p => ({
+            id: p.id,
+            name: p.full_name,
+            stentId: p.stent_id || 'N/A',
+            phone: p.phone || '',
+            age: p.age || '',
+            insertedDate: p.insertion_date || '',
+            removalDate: p.expected_removal_date || '',
+            status: p.status_color === 'red' ? 'overdue'
+                  : p.status_color === 'orange' ? 'upcoming'
+                  : p.stent_id ? 'safe' : 'safe',
+            isRemoved: p.stent_status === 'removed',
+          }));
+          setPatients(mapped);
         }
       } catch (err) {
         console.warn("Backend unavailable, using local mock data:", err);
@@ -286,10 +301,10 @@ export const DoctorDashboard = () => {
 
         {/* ─── Stats Cards ─── */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-          <MedStatCard label="Total Patients"    value={stats.total}    icon={Users}       bgColor="bg-blue-50"   iconColor="text-blue-600"   borderColor="border-blue-500"   onClick={() => setFilterStatus('all')} />
-          <MedStatCard label="Active Stents"     value={stats.active}   icon={Activity}    bgColor="bg-green-50"  iconColor="text-green-600"  borderColor="border-green-500"  onClick={() => setFilterStatus('safe')} />
-          <MedStatCard label="Upcoming Removals" value={stats.upcoming} icon={Clock}       bgColor="bg-amber-50"  iconColor="text-amber-500"  borderColor="border-amber-400"  onClick={() => setFilterStatus('upcoming')} />
-          <MedStatCard label="Overdue Cases"     value={stats.overdue}  icon={AlertCircle} bgColor="bg-red-50"    iconColor="text-red-500"    borderColor="border-red-500"    onClick={() => setFilterStatus('overdue')} />
+          <MedStatCard label="Total Patients"    value={stats.total}    icon={Users}       bgColor="bg-blue-50"   iconColor="text-blue-600"   borderColor="border-blue-500"   onClick={() => navigate('/doctor/patients')} />
+          <MedStatCard label="Active Stents"     value={stats.active}   icon={Activity}    bgColor="bg-green-50"  iconColor="text-green-600"  borderColor="border-green-500"  onClick={() => navigate('/doctor/stents')} />
+          <MedStatCard label="Upcoming Removals" value={stats.upcoming} icon={Clock}       bgColor="bg-amber-50"  iconColor="text-amber-500"  borderColor="border-amber-400"  onClick={() => navigate('/doctor/appointments')} />
+          <MedStatCard label="Overdue Cases"     value={stats.overdue}  icon={AlertCircle} bgColor="bg-red-50"    iconColor="text-red-500"    borderColor="border-red-500"    onClick={() => navigate('/doctor/notifications')} />
         </div>
 
         {/* ─── Quick Actions + Upcoming Removals ─── */}

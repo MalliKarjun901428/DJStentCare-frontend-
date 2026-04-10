@@ -1,4 +1,4 @@
-﻿package com.simats.stentcare
+package com.simats.stentcare
 
 import android.app.Application
 import android.content.Context
@@ -18,6 +18,12 @@ class DJStentCareApp : Application() {
         super.onCreate()
         instance = this
         prefs = getSharedPreferences("djstentcare_prefs", Context.MODE_PRIVATE)
+        
+        try {
+            com.google.firebase.FirebaseApp.initializeApp(this)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
     
     // User session management

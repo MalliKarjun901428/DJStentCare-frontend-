@@ -29,9 +29,9 @@ export const calcDays = (date) => {
   return Math.ceil((target - today) / 86400000);
 };
 
-export const calculateDueDate = (insertedDate, months = 3) => {
+export const calculateDueDate = (insertedDate, days = 30) => {
   if (!insertedDate) return '';
   const date = new Date(insertedDate);
-  date.setMonth(date.getMonth() + months);
+  date.setDate(date.getDate() + days);
   return date.toISOString().split('T')[0];
 };

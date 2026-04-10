@@ -1,4 +1,4 @@
-﻿package com.simats.stentcare.ui.admin
+package com.simats.stentcare.ui.admin
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import android.text.InputFilter
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -89,6 +90,8 @@ class HospitalManagementActivity : AppCompatActivity() {
         val etAddress = dialogView.findViewById<EditText>(R.id.etAddress)
         val etPhone = dialogView.findViewById<EditText>(R.id.etPhone)
         
+        etPhone.filters = arrayOf(InputFilter.LengthFilter(10))
+        
         AlertDialog.Builder(this)
             .setTitle("Add Hospital")
             .setView(dialogView)
@@ -110,6 +113,8 @@ class HospitalManagementActivity : AppCompatActivity() {
         val etName = dialogView.findViewById<EditText>(R.id.etName)
         val etAddress = dialogView.findViewById<EditText>(R.id.etAddress)
         val etPhone = dialogView.findViewById<EditText>(R.id.etPhone)
+        
+        etPhone.filters = arrayOf(InputFilter.LengthFilter(10))
         
         etName.setText(hospital.name)
         etAddress.setText(hospital.address)

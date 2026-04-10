@@ -313,3 +313,46 @@ class DoctorApprovalsView(View):
             if target.is_approved == 0:
                 target.delete()
             return send_success('Doctor rejected and removed')
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class UpdateProfileView(View):
+    """GET/PUT /api/admin/update_profile/"""
+
+    def get(self, request):
+        user = get_auth_user(request)
+        if not user:
+            return send_error('Unauthorized', 401)
+        if user.role != 'admin':
+            return send_error('Access denied', 403)
+
+        return send_success('Admin profile loaded', {
+            'full_name': user.full_name,
+            'email': user.email,
+            'phone': user.phone,
+            'profile_image': user.profile_image,
+        })
+
+    def put(self, request):
+        user = get_auth_user(request)
+        if not user or user.role != 'admin':
+            return send_error('Unauthorized', 401)
+
+        try:
+            data = json.loads(request.body)
+        except Exception:
+            return send_error('Invalid JSON')
+
+        full_name = data.get('full_name')
+        phone = data.get('phone')
+        profile_image = data.get('profile_image')
+
+        if full_name:
+            user.full_name = full_name
+        if phone:
+            user.phone = phone
+        if profile_image:
+            user.profile_image = profile_image
+
+        user.save()
+        return send_success('Profile updated successfully')

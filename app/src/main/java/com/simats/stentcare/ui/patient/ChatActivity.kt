@@ -1,4 +1,4 @@
-﻿package com.simats.stentcare.ui.patient
+package com.simats.stentcare.ui.patient
 
 import android.os.Bundle
 import android.widget.EditText
@@ -63,14 +63,14 @@ class ChatActivity : AppCompatActivity() {
 
     private fun loadMessages() {
         if (doctorId == 0) {
-            // Try to get doctor from patient dashboard
             loadDoctorAndMessages()
             return
         }
         
         lifecycleScope.launch {
             try {
-                val response = ApiClient.apiService.getMessages(doctorId)
+                // Pass doctorId as the partner user_id
+                val response = ApiClient.apiService.getMessages(userId = doctorId)
                 
                 if (response.isSuccessful && response.body()?.success == true) {
                     val data = response.body()?.data
@@ -82,13 +82,24 @@ class ChatActivity : AppCompatActivity() {
                         
                         findViewById<android.widget.TextView>(R.id.tvDoctorName).text = doctorName
                         
-                        rvMessages.adapter = ChatAdapter(messages, currentUserId)
-                        rvMessages.scrollToPosition(messages.size - 1)
+                        val adapter = rvMessages.adapter
+                        if (adapter == null) {
+                            rvMessages.adapter = ChatAdapter(messages, currentUserId)
+                        } else {
+                            adapter.notifyDataSetChanged()
+                        }
+                        if (messages.isNotEmpty()) {
+                            rvMessages.scrollToPosition(messages.size - 1)
+                        }
                     }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Toast.makeText(this@ChatActivity,
+                        "Could not load messages: ${response.code()}", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
                 Toast.makeText(this@ChatActivity, 
-                    "Error loading messages", Toast.LENGTH_SHORT).show()
+                    "No connection. Please check your network.", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -118,6 +129,20 @@ class ChatActivity : AppCompatActivity() {
     private fun sendMessage(text: String) {
         etMessage.setText("")
         
+        // Optimistic local append so the UI feels instant
+        val tempMsg = Message(
+            id = -1,
+            senderId = currentUserId,
+            receiverId = doctorId,
+            message = text,
+            isRead = 0,
+            sentAt = java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", java.util.Locale.getDefault()).format(java.util.Date()),
+            senderName = null
+        )
+        messages.add(tempMsg)
+        rvMessages.adapter?.notifyItemInserted(messages.size - 1)
+        rvMessages.scrollToPosition(messages.size - 1)
+        
         lifecycleScope.launch {
             try {
                 val response = ApiClient.apiService.sendMessage(
@@ -125,16 +150,22 @@ class ChatActivity : AppCompatActivity() {
                 )
                 
                 if (response.isSuccessful && response.body()?.success == true) {
+                    // Reload to get server timestamp & ID
                     loadMessages()
                 } else {
+                    // Remove optimistic message on failure
+                    messages.remove(tempMsg)
+                    rvMessages.adapter?.notifyDataSetChanged()
+                    etMessage.setText(text)
                     Toast.makeText(this@ChatActivity, 
                         "Failed to send message", Toast.LENGTH_SHORT).show()
-                    etMessage.setText(text)
                 }
             } catch (e: Exception) {
-                Toast.makeText(this@ChatActivity, 
-                    "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                messages.remove(tempMsg)
+                rvMessages.adapter?.notifyDataSetChanged()
                 etMessage.setText(text)
+                Toast.makeText(this@ChatActivity, 
+                    "No connection. Message not sent.", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -167,7 +198,12 @@ class ChatAdapter(
 
         fun bind(message: Message) {
             tvMessage.text = message.message
-            tvTime.text = message.sentAt.substring(11, 16) // HH:mm
+            // Guard: sentAt may be short or empty
+            tvTime.text = if (message.sentAt.length >= 16) {
+                message.sentAt.substring(11, 16)
+            } else {
+                message.sentAt
+            }
         }
     }
 }

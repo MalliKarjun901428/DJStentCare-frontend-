@@ -65,7 +65,7 @@ class DashboardView(View):
         if patient.doctor:
             d = patient.doctor
             doctor_info = {
-                'id': d.id,
+                'id': d.user.id,
                 'specialization': d.specialization,
                 'full_name': d.user.full_name,
                 'phone': d.user.phone,

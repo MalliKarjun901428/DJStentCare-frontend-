@@ -40,60 +40,6 @@
             android:textSize="16sp"
             android:textColor="@color/text_secondary" />
 
-        <!-- Profile Image Selection -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="24dp">
-
-            <FrameLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/ivProfile"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_profile_placeholder"
-                    app:civ_border_width="2dp"
-                    app:civ_border_color="@color/primary" />
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btnSelectImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    app:fabSize="mini"
-                    app:srcCompat="@drawable/ic_camera"
-                    app:tint="@color/white"
-                    android:backgroundTint="@color/primary" />
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Tap to change photo"
-                android:textSize="12sp"
-                android:textColor="@color/primary"
-                android:fontFamily="sans-serif-medium" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvImageError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Profile image is required"
-            android:textColor="@color/error"
-            android:textSize="12sp"
-            android:gravity="center"
-            android:visibility="gone"
-            android:layout_marginTop="4dp" />
-
         <!-- Form -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"

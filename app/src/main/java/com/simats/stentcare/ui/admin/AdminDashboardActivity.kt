@@ -1,4 +1,4 @@
-﻿package com.simats.stentcare.ui.admin
+package com.simats.stentcare.ui.admin
 
 import android.content.Intent
 import android.os.Bundle
@@ -69,6 +69,28 @@ class AdminDashboardActivity : AppCompatActivity() {
     }
     
     private fun setupCards() {
+        findViewById<MaterialCardView>(R.id.cardTotalDoctors).setOnClickListener {
+            startActivity(Intent(this, UserManagementActivity::class.java).apply {
+                putExtra("role", "doctor")
+            })
+        }
+        
+        findViewById<MaterialCardView>(R.id.cardTotalPatientsAdmin).setOnClickListener {
+            startActivity(Intent(this, UserManagementActivity::class.java).apply {
+                putExtra("role", "patient")
+            })
+        }
+        
+        findViewById<MaterialCardView>(R.id.cardActiveStentsAdmin).setOnClickListener {
+            startActivity(Intent(this, UserManagementActivity::class.java).apply {
+                putExtra("role", "patient")
+            })
+        }
+        
+        findViewById<MaterialCardView>(R.id.cardHospitalsStats).setOnClickListener {
+            startActivity(Intent(this, HospitalManagementActivity::class.java))
+        }
+        
         findViewById<MaterialCardView>(R.id.cardApprovals).setOnClickListener {
             startActivity(Intent(this, DoctorApprovalsActivity::class.java))
         }

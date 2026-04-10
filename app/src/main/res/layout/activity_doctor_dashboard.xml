@@ -61,6 +61,7 @@
 
                 <!-- Total Patients -->
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardTotalPatients"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -94,6 +95,7 @@
 
                 <!-- Active Stents -->
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardActiveStents"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -127,6 +129,7 @@
 
                 <!-- Upcoming -->
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardUpcoming"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -160,6 +163,7 @@
 
                 <!-- Overdue -->
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardOverdue"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"

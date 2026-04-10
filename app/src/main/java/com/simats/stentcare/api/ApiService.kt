@@ -1,4 +1,4 @@
-﻿package com.simats.stentcare.api
+package com.simats.stentcare.api
 
 import com.simats.stentcare.models.*
 import retrofit2.Response
@@ -156,6 +156,12 @@ interface ApiService {
     
     @POST("admin/hospitals/")
     suspend fun hospitalAction(@Body request: HospitalActionRequest): Response<ApiResponse<Any>>
+
+    @GET("admin/update_profile/")
+    suspend fun getAdminProfile(): Response<ApiResponse<User>>
+
+    @PUT("admin/update_profile/")
+    suspend fun updateAdminProfile(@Body request: UpdateProfileRequest): Response<ApiResponse<Any>>
     
     // ==================== EDUCATION ====================
     

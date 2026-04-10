@@ -67,6 +67,8 @@
         <activity android:name=".ui.admin.DoctorApprovalsActivity" />
         <activity android:name=".ui.admin.UserManagementActivity" />
         <activity android:name=".ui.admin.HospitalManagementActivity" />
+        <activity android:name=".ui.admin.AdminProfileActivity" />
+        <activity android:name=".ui.common.ChangePasswordActivity" />
         <activity android:name=".ui.admin.AdminSettingsActivity" />
         
         <!-- Common -->

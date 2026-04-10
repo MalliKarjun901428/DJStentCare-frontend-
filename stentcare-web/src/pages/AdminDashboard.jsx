@@ -23,8 +23,10 @@ import { StatCard, Table, Button } from '../components/UIComponents';
 import { initialPatients } from '../utils/mockData';
 import { apiFetch } from '../utils/api';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const AdminDashboard = () => {
+  const navigate = useNavigate();
   const [doctors, setDoctors] = useState([
     { id: 101, name: 'Dr. Gregory House', specialty: 'Infectious Disease', status: 'pending', joined: '2023-11-20' },
     { id: 102, name: 'Dr. Meredith Grey', specialty: 'General Surgery', status: 'approved', joined: '2023-10-15' },
@@ -87,10 +89,10 @@ export const AdminDashboard = () => {
 
         {/* Global Analytics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <StatCard label="Total Doctors" value={stats.doctors} icon={Users} color="var(--color-primary)" />
-          <StatCard label="Total Patients" value={stats.patients} icon={Activity} color="var(--color-accent)" />
-          <StatCard label="Active Stents" value={stats.activeStents} icon={BarChart3} color="var(--color-success)" />
-          <StatCard label="Hospitals" value={stats.hospitals} icon={Building2} color="#a855f7" />
+          <StatCard label="Total Doctors" value={stats.doctors} icon={Users} color="var(--color-primary)" onClick={() => navigate('/admin/doctors')} />
+          <StatCard label="Total Patients" value={stats.patients} icon={Activity} color="var(--color-accent)" onClick={() => navigate('/admin/patients')} />
+          <StatCard label="Active Stents" value={stats.activeStents} icon={BarChart3} color="var(--color-success)" onClick={() => navigate('/admin/reports')} />
+          <StatCard label="Hospitals" value={stats.hospitals} icon={Building2} color="#a855f7" onClick={() => navigate('/admin/settings')} />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">

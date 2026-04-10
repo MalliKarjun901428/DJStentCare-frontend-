@@ -1,4 +1,4 @@
-﻿package com.simats.stentcare.ui.doctor
+package com.simats.stentcare.ui.doctor
 
 import android.content.Intent
 import android.os.Bundle
@@ -30,10 +30,13 @@ class MyPatientsActivity : AppCompatActivity() {
     
     private var patients = listOf<Patient>()
     private var searchJob: Job? = null
+    private var statusFilter: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_patients)
+        
+        statusFilter = intent.getStringExtra("status")
         
         initViews()
         loadPatients()
@@ -49,6 +52,17 @@ class MyPatientsActivity : AppCompatActivity() {
         
         findViewById<ImageButton>(R.id.btnBack).setOnClickListener {
             finish()
+        }
+        
+        // Show filter status if set
+        if (!statusFilter.isNullOrEmpty()) {
+            val title = when(statusFilter) {
+                "active" -> "Active Stents"
+                "upcoming" -> "Upcoming Removals"
+                "overdue" -> "Overdue Removals"
+                else -> "My Patients"
+            }
+            findViewById<android.widget.TextView>(R.id.tvTitle)?.text = title
         }
         
         fabAdd.setOnClickListener {
@@ -73,7 +87,7 @@ class MyPatientsActivity : AppCompatActivity() {
         
         lifecycleScope.launch {
             try {
-                val response = ApiClient.apiService.getPatients(search)
+                val response = ApiClient.apiService.getPatients(search, statusFilter)
                 
                 if (response.isSuccessful && response.body()?.success == true) {
                     val data = response.body()?.data

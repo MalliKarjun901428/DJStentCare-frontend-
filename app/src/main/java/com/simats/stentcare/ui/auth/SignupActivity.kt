@@ -45,21 +45,10 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var etSpecialization: TextInputEditText
     private lateinit var btnSignup: MaterialButton
     private lateinit var progressBar: ProgressBar
-    private lateinit var ivProfile: ImageView
-    private lateinit var btnSelectImage: FloatingActionButton
-    private lateinit var tvImageError: TextView
 
     private var role: String = "patient"
-    private var selectedImageUri: Uri? = null
 
-    private val selectImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        uri?.let {
-            selectedImageUri = it
-            ivProfile.setImageURI(it)
-            tvImageError.visibility = View.GONE
-            validateForm()
-        }
-    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,10 +77,6 @@ class SignupActivity : AppCompatActivity() {
         // Set numeric input and length filters
         etPhone.filters = arrayOf(InputFilter.LengthFilter(10))
         etAge.filters = arrayOf(InputFilter.LengthFilter(2))
-        
-        btnSelectImage.setOnClickListener {
-            selectImageLauncher.launch("image/*")
-        }
 
         setupTextWatchers()
         validateForm() // Initial check
@@ -194,12 +179,6 @@ class SignupActivity : AppCompatActivity() {
             return
         }
 
-        if (selectedImageUri == null) {
-            tvImageError.visibility = View.VISIBLE
-            Toast.makeText(this, "Please select a profile image", Toast.LENGTH_SHORT).show()
-            return
-        }
-
         if (password.length < 6) {
             etPassword.error = "Password must be at least 6 characters"
             return
@@ -215,53 +194,7 @@ class SignupActivity : AppCompatActivity() {
             return
         }
 
-        uploadImageAndSignup(fullName, email, phone, password, gender, age, specialization)
-    }
-
-    private fun uploadImageAndSignup(
-        fullName: String,
-        email: String,
-        phone: String,
-        password: String,
-        gender: String,
-        age: Int,
-        specialization: String
-    ) {
-        progressBar.visibility = View.VISIBLE
-        btnSignup.isEnabled = false
-
-        lifecycleScope.launch {
-            try {
-                val imageUrl = uploadToFirebase()
-                if (imageUrl != null) {
-                    performSignup(fullName, email, phone, password, gender, age, specialization, imageUrl)
-                } else {
-                    Toast.makeText(this@SignupActivity, "Failed to upload image", Toast.LENGTH_SHORT).show()
-                }
-            } catch (e: Exception) {
-                // FALLBACK: Use a placeholder if Firebase fails (missing config)
-                val fallbackUrl = "https://ui-avatars.com/api/?name=$fullName"
-                performSignup(fullName, email, phone, password, gender, age, specialization, fallbackUrl)
-            } finally {
-                progressBar.visibility = View.GONE
-                btnSignup.isEnabled = true
-            }
-        }
-    }
-
-    private suspend fun uploadToFirebase(): String? {
-        val uri = selectedImageUri ?: return null
-        val fileName = UUID.randomUUID().toString() + ".jpg"
-        
-        return try {
-            val storage = FirebaseStorage.getInstance()
-            val ref = storage.reference.child("profiles/$fileName")
-            ref.putFile(uri).await()
-            ref.downloadUrl.await().toString()
-        } catch (e: Exception) {
-            // Log and return null to trigger fallback
-            null
-        }
+        performSignup(fullName, email, phone, password, gender, age, specialization, null)
     }
 
     private fun performSignup(
@@ -272,7 +205,7 @@ class SignupActivity : AppCompatActivity() {
         gender: String,
         age: Int,
         specialization: String,
-        profileImageUrl: String
+        profileImageUrl: String?
     ) {
         lifecycleScope.launch {
             try {
@@ -307,13 +240,14 @@ class SignupActivity : AppCompatActivity() {
 
                     Toast.makeText(
                         this@SignupActivity,
-                        "OTP sent to your email: $email",
-                        Toast.LENGTH_SHORT
+                        "✅ Account created! Please check your email ($email) for the OTP code.",
+                        Toast.LENGTH_LONG
                     ).show()
 
                     val intent = Intent(this@SignupActivity, OtpVerificationActivity::class.java)
                     intent.putExtra("email", email)
                     intent.putExtra("role", role)
+                    // No debug_otp passed — user must check their real email
                     startActivity(intent)
                     finish()
                 } else {

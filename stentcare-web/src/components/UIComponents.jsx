@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Activity, AlertCircle, Eye, EyeOff, ChevronDown } from 'lucide-react';
+import { Activity, AlertCircle, Eye, EyeOff, ChevronDown, X } from 'lucide-react';
 
-export const StatCard = ({ label, value, icon: Icon, color = 'var(--color-primary)' }) => {
+export const StatCard = ({ label, value, icon: Icon, color = 'var(--color-primary)', onClick }) => {
   return (
-    <div className="card-base group overflow-hidden">
+    <div 
+      className={`card-base group overflow-hidden ${onClick ? 'cursor-pointer hover:-translate-y-1 transition-all' : ''}`}
+      onClick={onClick}
+    >
       <div className="flex items-start justify-between relative z-10">
         <div>
           <p className="stat-label">{label}</p>
@@ -186,3 +189,28 @@ export const Button = ({ children, variant = 'primary', className = '', ...props
     </button>
   );
 };
+
+export const Modal = ({ title, subtitle, icon: Icon, iconBg, iconColor, onClose, children }) => (
+  <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300">
+    <div className="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto border border-white/20 animate-in zoom-in-95 duration-300">
+      <div className="flex items-center justify-between p-8 border-b border-slate-100">
+        <div className="flex items-center gap-5">
+          <div className={`w-14 h-14 ${iconBg} ${iconColor} rounded-2xl flex items-center justify-center shadow-sm`}>
+            <Icon size={28} strokeWidth={2.5} />
+          </div>
+          <div>
+            <h3 className="text-xl font-black text-slate-800 tracking-tight">{title}</h3>
+            <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mt-1">{subtitle}</p>
+          </div>
+        </div>
+        <button
+          onClick={onClose}
+          className="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-slate-800 hover:bg-slate-50 rounded-xl transition-all active:scale-90"
+        >
+          <X size={22} />
+        </button>
+      </div>
+      <div className="p-8">{children}</div>
+    </div>
+  </div>
+);

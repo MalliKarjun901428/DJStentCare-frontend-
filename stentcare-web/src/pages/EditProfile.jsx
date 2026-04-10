@@ -8,7 +8,8 @@ import {
   ArrowRight,
   LogOut,
   ChevronRight,
-  UserCheck
+  UserCheck,
+  CheckCircle
 } from 'lucide-react';
 import { Layout } from '../components/Layout';
 import { ValidatedInput, Button } from '../components/UIComponents';

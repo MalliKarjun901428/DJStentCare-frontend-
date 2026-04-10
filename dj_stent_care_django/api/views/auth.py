@@ -124,16 +124,15 @@ class RegisterView(View):
             'email': email,
             'role': role,
             'email_sent': email_sent,
-            'debug_otp': otp,  # Always returned; app shows it when email not sent
-            'note': 'Email sent!' if email_sent else 'Email not configured. Use debug_otp to verify.',
+            'note': 'OTP sent to your email!' if email_sent else 'Email sending failed. Please try resend OTP.',
             'message': (
                 'Registration successful. Please check your email for OTP and wait for admin approval.'
                 if role == 'doctor'
-                else 'Registration successful. Please verify with the OTP.'
+                else 'Registration successful. Please verify with the OTP sent to your email.'
             )
         }
 
-        return send_success('Registration successful. OTP sent.', response_data)
+        return send_success('Registration successful. OTP sent to email.', response_data)
 
 
 
@@ -302,10 +301,16 @@ class ForgotPasswordView(View):
         user.otp_expiry = otp_expiry
         user.save()
 
+        email_sent = send_otp_email(
+            to_email=email,
+            otp=otp,
+            subject='DJ Stent Care - Password Reset OTP'
+        )
+
         return send_success('OTP sent to your email', {
-            'email_sent': False,
+            'email_sent': email_sent,
             'debug_otp': otp,
-            'note': 'Email sending not configured. Use debug_otp for testing.',
+            'note': 'Email sent!' if email_sent else 'Email debug mode is on or sending failed.',
             'message': 'If this email is registered, you will receive a password reset code.'
         })
 

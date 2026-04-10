@@ -59,21 +59,36 @@ export const Login = () => {
           body: JSON.stringify({ email, password, role })
         });
         
-        // If successful, pass the real token to our context
-        const user = login(email, password, role);
-        localStorage.setItem('stentcare_token', data.token); // Real token save
-        if (user) navigate(`/${user.role}`);
+        // If successful, pass the real token and user data to our context
+        const userData = {
+          email: data.data.user.email,
+          role: data.data.user.role,
+          name: data.data.user.full_name,
+          photo: data.data.user.profile_image || `https://i.pravatar.cc/150?u=${data.data.user.email}`
+        };
+        
+        login(userData, data.data.token);
+        navigate(`/${userData.role}`);
 
       } catch (backendError) {
-        // Fallback to offline mock mode if Django isn't running / connected yet
-        console.warn('Backend connection failed, falling back to offline mode:', backendError);
+        // Fallback or explicit error
+        console.warn('Backend authentication failed:', backendError);
         
-        const user = login(email, password, role);
-        if (user) {
-          navigate(`/${user.role}`);
-        } else {
-          setError('Invalid login credentials.');
+        // Check for specific backend errors (e.g. Invalid credentials)
+        if (backendError.message && backendError.message !== 'Failed to fetch') {
+          setError(backendError.message);
+          return;
         }
+
+        // Only fall back to mock data if it's a connection failure (Failed to fetch)
+        const mockUser = {
+          email,
+          role,
+          name: email.split('@')[0],
+          photo: `https://i.pravatar.cc/150?u=${email}`
+        };
+        login(mockUser); // Sets mock token
+        navigate(`/${mockUser.role}`);
       }
     } catch (err) {
       setError('Connection failed. Try later.');
@@ -148,13 +163,12 @@ export const Login = () => {
             </button>
 
             <div className="mb-10">
-              <span className={`inline-block px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.2em] mb-4 text-white ${
-                role === 'doctor' ? 'bg-[#3b82f6]' : role === 'patient' ? 'bg-[#10b981]' : 'bg-[#f43f5e]'
+              <h2 className={`text-4xl font-black tracking-tight leading-none capitalize ${
+                role === 'doctor' ? 'text-[#3b82f6]' : role === 'patient' ? 'text-[#10b981]' : 'text-[#f43f5e]'
               }`}>
                 {role} Access
-              </span>
-              <h2 className="text-4xl font-black text-slate-800 tracking-tight leading-none">Security Portal</h2>
-              <p className="text-slate-400 font-bold mt-3">Enter your credentials to proceed.</p>
+              </h2>
+              <p className="text-slate-400 font-bold mt-3 border-l-2 p-l-2">Enter your credentials to proceed.</p>
             </div>
 
             <form onSubmit={handleLogin} className="space-y-6">

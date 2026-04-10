@@ -8,17 +8,14 @@ export const AuthProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : null;
   });
 
-  const login = (email, password, role) => {
-    // Simulated login for demo
-    const userData = {
-      email,
-      role: role || 'doctor',
-      name: email.split('@')[0],
-      photo: `https://i.pravatar.cc/150?u=${email}`
-    };
+  const login = (userData, token = null) => {
     setUser(userData);
     localStorage.setItem('stentcare_user', JSON.stringify(userData));
-    localStorage.setItem('stentcare_token', 'mock_token_123'); // Replace with actual backend token when real API succeeds
+    if (token) {
+      localStorage.setItem('stentcare_token', token);
+    } else {
+      localStorage.setItem('stentcare_token', 'mock_token_123'); // Fallback for offline mode
+    }
     return userData;
   };
 

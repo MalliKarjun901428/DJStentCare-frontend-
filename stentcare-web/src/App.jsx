@@ -7,6 +7,8 @@ import { AdminDashboard } from './pages/AdminDashboard';
 import { AdminDoctorsPage, AdminPatientsPage, AdminReportsPage, AdminNotificationsPage } from './pages/AdminPages';
 import { DoctorDashboard } from './pages/DoctorDashboard';
 import { PatientDashboard, PatientStentsPage, PatientAppointmentsPage, PatientNotificationsPage } from './pages/PatientPages';
+import { PatientLearnPage } from './pages/PatientLearnPage';
+import { PatientEmergencyPage } from './pages/PatientEmergencyPage';
 import { EditProfile } from './pages/EditProfile';
 import { ChangePassword } from './pages/ChangePassword';
 import { About } from './pages/About';
@@ -65,6 +67,8 @@ function App() {
           <Route path="/patient/stents" element={<ProtectedRoute allowedRole="patient"><PatientStentsPage /></ProtectedRoute>} />
           <Route path="/patient/appointments" element={<ProtectedRoute allowedRole="patient"><PatientAppointmentsPage /></ProtectedRoute>} />
           <Route path="/patient/notifications" element={<ProtectedRoute allowedRole="patient"><PatientNotificationsPage /></ProtectedRoute>} />
+          <Route path="/patient/learn" element={<ProtectedRoute allowedRole="patient"><PatientLearnPage /></ProtectedRoute>} />
+          <Route path="/patient/emergency" element={<ProtectedRoute allowedRole="patient"><PatientEmergencyPage /></ProtectedRoute>} />
           <Route path="/patient/settings" element={<ProtectedRoute allowedRole="patient"><SettingsPage /></ProtectedRoute>} />
 
           {/* Profile & Common */}

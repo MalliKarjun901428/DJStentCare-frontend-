@@ -83,6 +83,28 @@ class DoctorDashboardActivity : AppCompatActivity() {
     }
 
     private fun setupQuickActions() {
+        findViewById<MaterialCardView>(R.id.cardTotalPatients).setOnClickListener {
+            startActivity(Intent(this, MyPatientsActivity::class.java))
+        }
+
+        findViewById<MaterialCardView>(R.id.cardActiveStents).setOnClickListener {
+            startActivity(Intent(this, MyPatientsActivity::class.java).apply {
+                putExtra("status", "active")
+            })
+        }
+
+        findViewById<MaterialCardView>(R.id.cardUpcoming).setOnClickListener {
+            startActivity(Intent(this, MyPatientsActivity::class.java).apply {
+                putExtra("status", "upcoming")
+            })
+        }
+
+        findViewById<MaterialCardView>(R.id.cardOverdue).setOnClickListener {
+            startActivity(Intent(this, MyPatientsActivity::class.java).apply {
+                putExtra("status", "overdue")
+            })
+        }
+
         findViewById<MaterialCardView>(R.id.cardAddPatient).setOnClickListener {
             startActivity(Intent(this, AddPatientActivity::class.java))
         }

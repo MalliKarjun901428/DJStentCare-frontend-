@@ -1,4 +1,4 @@
-﻿package com.simats.stentcare.ui.admin
+package com.simats.stentcare.ui.admin
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -35,6 +35,17 @@ class UserManagementActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user_management)
         
         initViews()
+        
+        // Handle role filtering from Intent
+        val role = intent.getStringExtra("role")
+        if (role != null) {
+            currentFilter = role
+            when (role) {
+                "doctor" -> chipGroup.check(R.id.chipDoctors)
+                "patient" -> chipGroup.check(R.id.chipPatients)
+            }
+        }
+        
         loadUsers()
     }
 

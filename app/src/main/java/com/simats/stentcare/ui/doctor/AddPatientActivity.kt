@@ -44,6 +44,7 @@ class AddPatientActivity : AppCompatActivity() {
 
         // Set length filters
         etPhone.filters = arrayOf(android.text.InputFilter.LengthFilter(10))
+        etEmergencyContact.filters = arrayOf(android.text.InputFilter.LengthFilter(10))
         etAge.filters = arrayOf(android.text.InputFilter.LengthFilter(2))
         
         findViewById<ImageButton>(R.id.btnBack).setOnClickListener {

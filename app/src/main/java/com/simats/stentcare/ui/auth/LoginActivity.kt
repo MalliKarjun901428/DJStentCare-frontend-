@@ -50,6 +50,10 @@ class LoginActivity : AppCompatActivity() {
             login()
         }
         
+        findViewById<View>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
+        
         findViewById<TextView>(R.id.tvForgotPassword).setOnClickListener {
             startActivity(Intent(this, ForgotPasswordActivity::class.java))
         }

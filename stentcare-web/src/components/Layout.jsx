@@ -12,7 +12,9 @@ import {
   Search,
   ChevronLeft,
   Menu,
-  MoreVertical
+  MoreVertical,
+  BookOpen,
+  AlertCircle
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -37,6 +39,8 @@ export const Sidebar = () => {
     { label: 'Dashboard', icon: LayoutDashboard, path: '/patient' },
     { label: 'My Stent Details', icon: Activity, path: '/patient/stents' },
     { label: 'Appointments', icon: Calendar, path: '/patient/appointments' },
+    { label: 'Learn', icon: BookOpen, path: '/patient/learn' },
+    { label: 'Emergency', icon: AlertCircle, path: '/patient/emergency' },
     { label: 'Notifications', icon: Bell, path: '/patient/notifications' },
     { label: 'Profile', icon: User, path: '/edit-profile' },
     { label: 'Settings', icon: Settings, path: '/patient/settings' },
@@ -168,7 +172,15 @@ export const Header = ({ title }) => {
                   </div>
                 </div>
                 <div className="px-5 pt-3 pb-1 text-center border-t border-slate-50">
-                  <button className="text-[11px] font-black text-primary uppercase tracking-widest hover:underline">View All Notifications</button>
+                  <button 
+                    onClick={() => {
+                      setShowNotifications(false);
+                      navigate(`/${user?.role}/notifications`);
+                    }}
+                    className="text-[11px] font-black text-primary uppercase tracking-widest hover:underline"
+                  >
+                    View All Notifications
+                  </button>
                 </div>
               </div>
             )}

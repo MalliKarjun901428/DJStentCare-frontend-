@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DJ Stent Care</string>
+    <string name="app_name">StentCare</string>
     
     <!-- Onboarding -->
     <string name="onboarding_title_1">Track DJ Stents Digitally</string>
